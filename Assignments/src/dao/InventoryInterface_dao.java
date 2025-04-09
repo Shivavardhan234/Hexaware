@@ -9,10 +9,10 @@ import java.util.*;
 
 public interface InventoryInterface_dao {
 //--------------------------CRUD Methods-------------------------------------------------------	
-	void addInventory(Inventory inventory) throws SQLException;
+	void addInventory(int inventoryId, int productId, int quantity, LocalDateTime lastStockUpdate) throws SQLException;
 	void getAllInventories() throws SQLException;
     void getInventoryByInventoryId(int InventoryId) throws SQLException;
-    void updateInventory(Inventory inventory) throws SQLException;
+    void updateInventory(int inventoryId, int productId, int quantity, LocalDateTime lastStockUpdate) throws SQLException;
     void deleteInventory(int inventoryId) throws SQLException;
     
 //----------------------------------update method for all attributes-----------------------------

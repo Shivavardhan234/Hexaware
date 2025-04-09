@@ -11,14 +11,14 @@ public class OrderDetails_dao implements OrderdetailsInterface_dao {
     
 
     @Override
-    public void addOrderDetails(OrderDetails details) throws SQLException {
+    public void addOrderDetails(int detailId, int orderId, int productId,int  quantity,float discount) throws SQLException {
         String sql = "INSERT INTO OrderDetails (OrderDetailID, OrderID, ProductID, Quantity, Discount) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, details.getOrderDetailID());
-            stmt.setInt(2, details.getOrder().getOrderID());
-            stmt.setInt(3, details.getProduct().getProductID());
-            stmt.setInt(4, details.getQuantity());
-            stmt.setFloat(5, details.getDiscount());
+            stmt.setInt(1, detailId);
+            stmt.setInt(2,  orderId);
+            stmt.setInt(3, productId);
+            stmt.setInt(4, quantity);
+            stmt.setFloat(5, discount);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new SQLException("Failed to add order details", e);
@@ -62,14 +62,14 @@ public class OrderDetails_dao implements OrderdetailsInterface_dao {
     }
 
     @Override
-    public void updateOrderDetails(OrderDetails details) throws SQLException {
+    public void updateOrderDetails(int detailId, int orderId, int productId,int  quantity,float discount) throws SQLException {
         String sql = "UPDATE OrderDetails SET OrderID = ?, ProductID = ?, Quantity = ?, Discount = ? WHERE OrderDetailID = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, details.getOrder().getOrderID());
-            stmt.setInt(2, details.getProduct().getProductID());
-            stmt.setInt(3, details.getQuantity());
-            stmt.setFloat(4, details.getDiscount());
-            stmt.setInt(5, details.getOrderDetailID());
+            stmt.setInt(1, orderId);
+            stmt.setInt(2, productId);
+            stmt.setInt(3, quantity);
+            stmt.setFloat(4, discount);
+            stmt.setInt(5, detailId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new SQLException("Failed to update order details", e);

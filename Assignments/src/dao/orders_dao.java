@@ -1,5 +1,6 @@
 package dao;
 import java.sql.*;
+import java.time.LocalDateTime;
 
 import entity.Orders;
 import utils.DatabaseConnection;
@@ -10,14 +11,14 @@ public class orders_dao implements OrdersInterface_dao {
 
     
 	 @Override
-	    public void addOrder(Orders order) throws SQLException {
+	    public void addOrder(int orderId, int customerID, LocalDateTime dt,String status,double  totalAmount) throws SQLException {
 	        String sql = "INSERT INTO Orders (OrderID, CustomerID, OrderDate, orderStatus, TotalAmount) VALUES (?, ?, ?, ?, ?)";
 	        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-	            stmt.setInt(1, order.getOrderID());
-	            stmt.setInt(2, order.getCustomer().getCustomerID());
-	            stmt.setTimestamp(3, Timestamp.valueOf(order.getOrderDate()));
-	            stmt.setString(4, order.getOrderStatus());
-	            stmt.setDouble(5, order.getTotalAmount());
+	            stmt.setInt(1, orderId);
+	            stmt.setInt(2, customerID);
+	            stmt.setTimestamp(3, Timestamp.valueOf(dt));
+	            stmt.setString(4, status);
+	            stmt.setDouble(5, totalAmount);
 	            stmt.executeUpdate();
 	        } catch (SQLException e) {
 	            throw new SQLException("Failed to add the order", e);

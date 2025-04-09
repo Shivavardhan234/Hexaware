@@ -9,13 +9,13 @@ public class inventory_dao implements InventoryInterface_dao {
 	private Connection connection = DatabaseConnection.getConnection();
 
 	@Override
-    public void addInventory(Inventory inventory) throws SQLException {
+    public void addInventory(int inventoryId, int productId, int quantity, LocalDateTime lastStockUpdate) throws SQLException {
         String sql = "INSERT INTO Inventory (InventoryID, ProductID, QuantityInStock, LastStockUpdate) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, inventory.getInventoryID());
-            stmt.setInt(2, inventory.GetProduct().getProductID());
-            stmt.setInt(3, inventory.GetQuantityInStock());
-            stmt.setTimestamp(4, Timestamp.valueOf(inventory.getLastStockUpdate()));
+            stmt.setInt(1, inventoryId);
+            stmt.setInt(2, productId);
+            stmt.setInt(3, quantity);
+            stmt.setTimestamp(4, Timestamp.valueOf(lastStockUpdate));
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new SQLException("Failed to add inventory", e);
@@ -57,13 +57,13 @@ public class inventory_dao implements InventoryInterface_dao {
     }
 
     @Override
-    public void updateInventory(Inventory inventory) throws SQLException {
+    public void updateInventory(int inventoryId, int productId, int quantity, LocalDateTime lastStockUpdate) throws SQLException {
         String sql = "UPDATE Inventory SET ProductID = ?, QuantityInStock = ?, LastStockUpdate = ? WHERE InventoryID = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, inventory.GetProduct().getProductID());
-            stmt.setInt(2, inventory.GetQuantityInStock());
-            stmt.setTimestamp(3, Timestamp.valueOf(inventory.getLastStockUpdate()));
-            stmt.setInt(4, inventory.getInventoryID());
+            stmt.setInt(1, productId);
+            stmt.setInt(2, quantity);
+            stmt.setTimestamp(3, Timestamp.valueOf(lastStockUpdate));
+            stmt.setInt(4, inventoryId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new SQLException("Failed to update inventory", e);

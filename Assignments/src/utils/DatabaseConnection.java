@@ -1,7 +1,7 @@
 package utils;
 import java.sql.*;
 public class DatabaseConnection {
-	private static final String URL="jdbc:mysql://localhost:3306/Techshop";
+	private static final String URL="jdbc:mysql://localhost:3306/TechShopDB";
 	private static final String USER="root";
 	private static final String PASSWORD="Shivavardhan@t2s";
 	private static Connection connection;

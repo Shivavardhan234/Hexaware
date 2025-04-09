@@ -11,7 +11,7 @@ public class product_dao implements ProductInterface_dao{
 
     @Override
     public void addProduct(Products product) throws SQLException {
-        String sql = "INSERT INTO Products (ProductID, ProductName, ProductDescription, ProductPrice) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Products (ProductID, ProductName, ProdDescription, Price) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, product.getProductID());
             stmt.setString(2, product.getProductName());
@@ -32,8 +32,8 @@ public class product_dao implements ProductInterface_dao{
             if (rs.next()) {
                 System.out.println("Product ID: " + rs.getInt("ProductID"));
                 System.out.println("Product Name: " + rs.getString("ProductName"));
-                System.out.println("Product Description: " + rs.getString("ProductDescription"));
-                System.out.println("Product Price: " + rs.getInt("ProductPrice"));
+                System.out.println("Product Description: " + rs.getString("ProdDescription"));
+                System.out.println("Product Price: " + rs.getInt("Price"));
             }
             else {
                 System.out.println("Product not found with ID: " + productId);
@@ -50,8 +50,8 @@ public class product_dao implements ProductInterface_dao{
             while (rs.next()) {
                 System.out.println("Product ID: " + rs.getInt("ProductID") +
                                    ", Name: " + rs.getString("ProductName") +
-                                   ", Description: " + rs.getString("ProductDescription") +
-                                   ", Price: " + rs.getInt("ProductPrice"));
+                                   ", Description: " + rs.getString("ProdDescription") +
+                                   ", Price: " + rs.getInt("Price"));
             }
         } catch (SQLException e) {
             throw new SQLException("Database error occurred while displaying all products", e);
@@ -60,7 +60,7 @@ public class product_dao implements ProductInterface_dao{
 
     @Override
     public void updateProduct(Products product) throws SQLException {
-        String sql = "UPDATE Products SET ProductName = ?, ProductDescription = ?, ProductPrice = ? WHERE ProductID = ?";
+        String sql = "UPDATE Products SET ProductName = ?, ProdDescription = ?, Price = ? WHERE ProductID = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, product.getProductName());
             stmt.setString(2, product.getDescription());

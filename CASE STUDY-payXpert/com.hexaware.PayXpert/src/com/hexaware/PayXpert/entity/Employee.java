@@ -21,17 +21,17 @@ public class Employee {
     
 //------------------------------------constructor--------------------------------------
     public Employee(int employeeId, String firstName, String lastName, LocalDate dateOfBirth,String gender, String email, String phoneNumber, String address,String position, LocalDate joiningDate, LocalDate terminationDate)throws InvalidInputException {
-setEmployeeId( employeeId);
-setFirstName ( firstName);
-setLastName ( lastName);
-setDateOfBirth ( dateOfBirth);
-setGender ( gender);
-setEmail ( email);
-setPhoneNumber ( phoneNumber);
-setAddress ( address);
-setPosition ( position);
-setJoiningDate ( joiningDate);
-setTerminationDate ( terminationDate);
+		setEmployeeId( employeeId);
+		setFirstName ( firstName);
+		setLastName ( lastName);
+		setDateOfBirth ( dateOfBirth);
+		setGender ( gender);
+		setEmail ( email);
+		setPhoneNumber ( phoneNumber);
+		setAddress ( address);
+		setPosition ( position);
+		setJoiningDate ( joiningDate);
+		setTerminationDate ( terminationDate);
 }
     
     
